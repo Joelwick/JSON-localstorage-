@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show applicants</title>
+</head>
+<body>
+    <button onclick="disp()">display</button>
+    <div id="result"></div>
+
+
+    <script>
+         function disp() {
+            allUsers = JSON.parse(localStorage.getItem("pp"))
+            ki = "<table border=1 table>"
+                    ki += "<thead>"
+                        ki += "<th>" + "S/N" + "</th>"
+                        ki += "<th>" + "first Name" + "</th>"
+                        ki += "<th>" + "Last Name" + "</th>"
+                        ki += "<th>" + "E-mail Account" + "</th>"
+                        ki += "<th>" + "Contact" + "</th>"
+                    ki += "</thead>"
+                   
+                    for (i = 0; i < allUsers.length; i++) {
+                        ki += "<tr>"
+                            ki += "<td>" + (i+1) + "</td>" + "<td>" + allUsers[i].firstName + "</td>" + "<td>" + allUsers[i].lastName + "<br>" + "</td>" + "<td>" + allUsers[i].email + "</td>" + "<td>" + allUsers[i].Contact + "</td>"
+                        ki += "</tr>"
+                }
+            ki += "</table>"
+            // result.innerHTML = ki
+            document.write(ki)
+        }
+    </script>
+</body>
+</html>

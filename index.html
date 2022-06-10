@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<!-- <body>
+    <div class="container-fluid">
+        <h1 class="card-header text-center">Job Applicants</h1>
+        <div class="row">
+            <label for="">First Name</label>
+            <div class="form-floating">
+                <input type="text" name="firstName" id="fN" placeholder="Enter your First Name here" class="form-control">
+                <label for="firstName">Enter your first Name</label>
+            </div>
+            <label for="">Last Name</label>
+            <div class="form-floating">
+                <input type="text" name="firstName" id="fN" placeholder="Enter your First Name here" class="form-control">
+                <label for="firstName">Enter your first Name</label>
+            </div>
+        </div> -->
+        
+    </div>
+    <table border="1" align="center" class="table table-bordered">
+        <tr>
+            <td colspan="2" align="center">Job Application list</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td colspan="2"><input type="text" name="" id="fN" placeholder="Input firstname" required></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td colspan="2"><input type="text" name="" id="lN" placeholder="Input lastname" required></td>
+        </tr>
+        <tr>
+            <td>E-mail</td>
+            <td colspan="2"><input type="email" name="" id="email" placeholder="abc@gmail.com" required></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td colspan="2"><input type="number" name="" id="contact" required></td>
+        </tr>
+        <tr>
+            <td align="center"><button onclick="submit()">Submit</button></td>
+            <td align="center"><button onclick="disp()">Show Applicant list</button></td>
+        </tr>
+        <tr>
+            <td align="center"><button onclick="pre()">Previous</button></td>
+            <td align="center"><button onclick="nex()">Next</button></td>
+        </tr>
+    </table>
+    <table border="1" align="center" id="result">
+        <thead>
+            <th>S/N</th>
+            <th>firstName</th>
+            <th>lastName</th>
+            <th>email</th>
+        </thead>
+    </table>
+    <script>
+        ind = -1;
+        allUsers = [];
+        ki = "";
+        function submit() {
+            if (localStorage.pp != null) {
+                allUsers = JSON.parse(localStorage.getItem("pp"));
+            }
+            peo = ({ "firstName": fN.value, "lastName": lN.value, "email": email.value, "Contact": contact.value });
+            allUsers.push(peo)
+            spp = JSON.stringify(allUsers);
+            localStorage.setItem("pp", spp);
+            alert("Registration successful")
+
+
+        }
+        function disp() {
+            allUsers = JSON.parse(localStorage.getItem("pp"))
+            ki = "<table border=1 table>"
+                    ki += "<thead>"
+                        ki += "<th>" + "S/N" + "</th>"
+                        ki += "<th>" + "first Name" + "</th>"
+                        ki += "<th>" + "Last Name" + "</th>"
+                        ki += "<th>" + "E-mail Account" + "</th>"
+                        ki += "<th>" + "Contact" + "</th>"
+                    ki += "</thead>"
+                   
+                    for (i = 0; i < allUsers.length; i++) {
+                        ki += "<tr>"
+                            ki += "<td>" + (i+1) + "</td>" + "<td>" + allUsers[i].firstName + "</td>" + "<td>" + allUsers[i].lastName + "<br>" + "</td>" + "<td>" + allUsers[i].email + "</td>" + "<td>" + allUsers[i].Contact + "</td>"
+                        ki += "</tr>"
+                }
+            ki += "</table>"
+            result.innerHTML = ki
+        }
+        function pre() {
+            allUsers = JSON.parse(localStorage.getItem("pp"));
+            ind--;
+            if (ind < 1) {
+                ind = 0
+            }
+            ki = "<table border=1>"
+                ki += "<thead>"
+                        ki += "<th>" + "S/N" + "</th>"
+                        ki += "<th>" + "first Name" + "</th>"
+                        ki += "<th>" + "Last Name" + "</th>"
+                        ki += "<th>" + "E-mail Account" + "</th>"
+                        ki += "<th>" + "Contact" + "</th>"
+                ki += "</thead>"
+                ki += "<tr>"
+                    ki += "<td>" + ind + "</td>"
+                    ki += "<td>" + allUsers[ind].firstName + "</td>"
+                    ki += "<td>" + allUsers[ind].lastName + "<br>" + "</td>"
+                    ki += "<td>" + allUsers[ind].email + "</td>"
+                    ki += "<td>" + allUsers[ind].Contact + "<br>" + "</td>"
+                ki += "</tr>"
+            ki += "</table>"
+            result.innerHTML = ki
+        }
+        function nex() {
+            allUsers = JSON.parse(localStorage.getItem("pp"));
+            total = (allUsers.length)-1
+            // alert(total)
+            ind++;
+            if (ind >= total) {
+                ind=total
+            }
+            ki = "<table border=1>"
+                ki += "<thead>"
+                        ki += "<th>" + "S/N" + "</th>"
+                        ki += "<th>" + "first Name" + "</th>"
+                        ki += "<th>" + "Last Name" + "</th>"
+                        ki += "<th>" + "E-mail Account" + "</th>"
+                        ki += "<th>" + "Contact" + "</th>"
+                ki += "</thead>"
+                ki += "<tr>"
+                    ki += "<td>" + ind + "</td>"
+                    ki += "<td>" + allUsers[ind].firstName + "</td>"
+                    ki += "<td>" + allUsers[ind].lastName + "<br>" + "</td>"
+                    ki += "<td>" + allUsers[ind].email + "</td>"
+                    ki += "<td>" + allUsers[ind].Contact + "<br>" + "</td>"
+                ki += "</tr>"
+            ki += "</table>"
+            result.innerHTML = ki;
+
+        }
+    </script>
+</body>
+
+</html>
